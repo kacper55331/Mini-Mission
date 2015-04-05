@@ -1,0 +1,1139 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.11.1deb2+deb7u1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Czas wygenerowania: 05 Kwi 2015, 22:29
+-- Wersja serwera: 5.5.38
+-- Wersja PHP: 5.4.36-0+deb7u3
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Baza danych: `minimission`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `all_achiv`
+--
+
+CREATE TABLE IF NOT EXISTS `all_achiv` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `player` int(10) unsigned NOT NULL,
+  `type` bigint(20) unsigned NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  `server` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `all_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `all_admin` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `glob` int(10) unsigned NOT NULL,
+  `start` int(10) unsigned NOT NULL DEFAULT '0',
+  `end` int(10) unsigned NOT NULL DEFAULT '0',
+  `server` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `all_logs`
+--
+
+CREATE TABLE IF NOT EXISTS `all_logs` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `player` int(10) NOT NULL,
+  `victim` int(10) unsigned NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
+  `reason` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  `end` int(11) NOT NULL DEFAULT '-1',
+  `active` int(10) unsigned NOT NULL DEFAULT '1',
+  `server` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `all_online`
+--
+
+CREATE TABLE IF NOT EXISTS `all_online` (
+  `type` tinyint(3) unsigned NOT NULL,
+  `player` int(11) unsigned NOT NULL,
+  `ID` tinyint(3) unsigned NOT NULL,
+  `time` int(11) unsigned NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_achiv`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_achiv` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `player` int(10) unsigned NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_attach`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_attach` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `playeruid` int(11) unsigned NOT NULL,
+  `index` int(11) unsigned NOT NULL,
+  `model` int(11) unsigned NOT NULL,
+  `bone` int(11) unsigned NOT NULL,
+  `x` float NOT NULL DEFAULT '0',
+  `y` float NOT NULL DEFAULT '0',
+  `z` float NOT NULL DEFAULT '0',
+  `rx` float NOT NULL DEFAULT '0',
+  `ry` float NOT NULL DEFAULT '0',
+  `rz` float NOT NULL DEFAULT '0',
+  `ax` float NOT NULL DEFAULT '1',
+  `ay` float NOT NULL DEFAULT '1',
+  `az` float NOT NULL DEFAULT '1',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_cams`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_cams` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `rx` float NOT NULL,
+  `ry` float NOT NULL,
+  `rz` float NOT NULL,
+  `name` varchar(32) COLLATE utf8_polish_ci NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
+
+--
+-- Zrzut danych tabeli `mini_cams`
+--
+
+INSERT INTO `mini_cams` (`uid`, `x`, `y`, `z`, `rx`, `ry`, `rz`, `name`) VALUES
+(1, 1131.37, -1397.79, 53.8756, 1131.37, -1398.8, 53.4557, 'centrum'),
+(2, 1490.72, -1579.29, 76.2172, 1490.7, -1580.29, 76.2772, 'gf dmv'),
+(3, 1562.73, -1651.54, 267.376, 1562.64, -1650.55, 267.233, 'wiezowce'),
+(4, 1474.68, -915.362, 77.75, 1474.19, -914.489, 77.7613, 'vinewood'),
+(5, 1229.19, -1420.1, 53.7283, 1229.91, -1419.4, 53.3546, 'urzad n4g');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_connect`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_connect` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `player` int(11) unsigned NOT NULL,
+  `time` int(11) unsigned NOT NULL,
+  `succes` int(11) unsigned NOT NULL,
+  `ip` varchar(18) NOT NULL,
+  `timehere` int(11) unsigned NOT NULL,
+  `afktime` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_game`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_game` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `time` int(10) unsigned NOT NULL DEFAULT '900',
+  `min` int(10) unsigned NOT NULL DEFAULT '1',
+  `hp` float unsigned NOT NULL DEFAULT '100',
+  `type` int(11) unsigned NOT NULL DEFAULT '0',
+  `weather` int(11) NOT NULL DEFAULT '1',
+  `gametime` int(11) NOT NULL DEFAULT '12',
+  `name1` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NULL' COMMENT 'Atak',
+  `name2` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NULL' COMMENT 'Obrona',
+  `c1` int(10) unsigned NOT NULL DEFAULT '0',
+  `c2` int(10) unsigned NOT NULL DEFAULT '0',
+  `model` smallint(4) unsigned NOT NULL DEFAULT '400',
+  `x` float NOT NULL DEFAULT '0',
+  `y` float NOT NULL DEFAULT '0',
+  `z` float NOT NULL DEFAULT '0',
+  `a` float NOT NULL DEFAULT '0',
+  `m_x` float NOT NULL DEFAULT '0',
+  `m_y` float NOT NULL DEFAULT '0',
+  `m_z` float NOT NULL DEFAULT '0',
+  `c_x` float NOT NULL DEFAULT '0',
+  `c_y` float NOT NULL DEFAULT '0',
+  `c_z` float NOT NULL DEFAULT '0',
+  `c_rx` float NOT NULL DEFAULT '0',
+  `c_ry` float NOT NULL DEFAULT '0',
+  `c_rz` float NOT NULL DEFAULT '0',
+  `c_int` int(11) unsigned NOT NULL DEFAULT '0',
+  `w1` int(10) unsigned NOT NULL DEFAULT '0',
+  `w2` int(10) unsigned NOT NULL DEFAULT '0',
+  `w3` int(10) unsigned NOT NULL DEFAULT '0',
+  `w4` int(10) unsigned NOT NULL DEFAULT '0',
+  `visits` int(10) unsigned NOT NULL DEFAULT '0',
+  `author` int(11) NOT NULL DEFAULT '0',
+  `sound` varchar(126) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NULL',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+
+--
+-- Zrzut danych tabeli `mini_game`
+--
+
+INSERT INTO `mini_game` (`uid`, `name`, `time`, `min`, `hp`, `type`, `weather`, `gametime`, `name1`, `name2`, `c1`, `c2`, `model`, `x`, `y`, `z`, `a`, `m_x`, `m_y`, `m_z`, `c_x`, `c_y`, `c_z`, `c_rx`, `c_ry`, `c_rz`, `c_int`, `w1`, `w2`, `w3`, `w4`, `visits`, `author`, `sound`, `active`) VALUES
+(1, 'Przejmowanie cysterny', 180, 2, 100, 2, 1, 12, 'Atak', 'Obrona', 0, 0, 428, -1019.21, -677.105, 31.7349, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 'NULL', 1),
+(2, 'Walka w powietrzu', 180, 2, 100, 1, 1, 12, 'Anglia', 'Niemcy', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -955.071, 674.506, 99.1887, -955.909, 673.954, 98.9686, 0, 0, 0, 0, 0, 28, 0, 'NULL', 1),
+(3, 'Los Santos Deatch Match', 180, 2, 100, 3, 1, 12, 'NULL', 'NULL', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 'NULL', 1),
+(4, 'Skoki spadochronowe', 180, 1, 100, 4, 1, 12, 'NULL', 'NULL', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 'NULL', 0),
+(5, 'Groove vs Ballas', 900, 2, 100, 1, 1, 12, 'Groove', 'Ballas', 86, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 'NULL', 1),
+(6, 'Los Santos Drift', 900, 2, 100, 5, 1, 12, 'NULL', 'NULL', 0, 0, 562, 0, 0, 0, 0, 0, 0, 0, 2396.52, -1659.23, 23.1387, 2397.52, -1659.23, 22.6988, 0, 0, 0, 0, 0, 34, 0, 'NULL', 1),
+(7, 'Jefferson Motel', 900, 2, 100, 1, 1, 12, 'Groove', 'SWAT', 86, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2247.9, -1189.52, 1029.8, 2198.72, -1188.44, 1029.8, 0, 0, 0, 0, 0, 23, 0, 'NULL', 1),
+(8, 'DM Arena', 180, 2, 100, 3, 1, 12, 'NULL', 'NULL', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42, 0, 'NULL', 1),
+(9, 'OneDeath', 180, 2, 20, 3, 1, 12, 'NULL', 'NULL', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 'NULL', 1),
+(10, 'Hay', 180, 2, 20, 10, 1, 12, 'NULL', 'NULL', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 'NULL', 1),
+(11, 'Las Venturas Stunt', 900, 1, 100, 8, 1, 12, 'NULL', 'NULL', 0, 0, 522, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 'NULL', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_info`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_info` (
+  `online` int(10) unsigned NOT NULL,
+  `max` int(11) NOT NULL DEFAULT '0',
+  `map` int(10) unsigned NOT NULL,
+  `played` int(10) unsigned NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Zrzut danych tabeli `mini_info`
+--
+
+INSERT INTO `mini_info` (`online`, `max`, `map`, `played`) VALUES
+(0, 100, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_items`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_items` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `player` int(10) unsigned NOT NULL DEFAULT '0',
+  `shopuid` int(10) unsigned NOT NULL DEFAULT '0',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  `used` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Zrzut danych tabeli `mini_items`
+--
+
+INSERT INTO `mini_items` (`uid`, `player`, `shopuid`, `time`, `used`) VALUES
+(1, 1, 2, 1380416102, 0),
+(2, 1, 1, 1380495302, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_join`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_join` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `klan` int(10) unsigned NOT NULL DEFAULT '0',
+  `from` int(10) unsigned NOT NULL DEFAULT '0',
+  `player` int(10) unsigned NOT NULL DEFAULT '0',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Zrzut danych tabeli `mini_join`
+--
+
+INSERT INTO `mini_join` (`uid`, `klan`, `from`, `player`, `time`) VALUES
+(15, 5, 70, 71, 1406476291);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_klan`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_klan` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '',
+  `color` varchar(12) NOT NULL DEFAULT '0xFFFFFFAA',
+  `tag` varchar(5) NOT NULL,
+  `points` int(10) unsigned NOT NULL DEFAULT '0',
+  `cash` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Zrzut danych tabeli `mini_klan`
+--
+
+INSERT INTO `mini_klan` (`uid`, `name`, `color`, `tag`, `points`, `cash`) VALUES
+(1, 'Turbo Clan', '0xff0000AA', 'TSW', 396, 0),
+(5, 'Green Team', '0x008700AA', 'GT', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_objects`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_objects` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gameuid` int(10) unsigned NOT NULL DEFAULT '0',
+  `model` int(10) unsigned NOT NULL DEFAULT '0',
+  `x` float NOT NULL DEFAULT '0',
+  `y` float NOT NULL DEFAULT '0',
+  `z` float NOT NULL DEFAULT '0',
+  `rx` float NOT NULL DEFAULT '0',
+  `ry` float NOT NULL DEFAULT '0',
+  `rz` float NOT NULL DEFAULT '0',
+  `gx` float NOT NULL DEFAULT '0',
+  `gy` float NOT NULL DEFAULT '0',
+  `gz` float NOT NULL DEFAULT '0',
+  `grx` float NOT NULL DEFAULT '0',
+  `gry` float NOT NULL DEFAULT '0',
+  `grz` float NOT NULL DEFAULT '0',
+  `owner` int(11) NOT NULL DEFAULT '0',
+  `index_text` int(10) unsigned DEFAULT '0',
+  `index_mat` int(10) unsigned DEFAULT '1',
+  `color_text` varchar(12) DEFAULT '0xAAFFFFFF',
+  `color_mat` varchar(12) NOT NULL DEFAULT '0',
+  `bgcolor` varchar(12) NOT NULL DEFAULT '0',
+  `tsize` int(10) unsigned NOT NULL DEFAULT '0',
+  `size` int(10) unsigned NOT NULL DEFAULT '28',
+  `align` int(10) unsigned NOT NULL DEFAULT '0',
+  `bold` tinyint(4) NOT NULL DEFAULT '0',
+  `text` varchar(64) NOT NULL DEFAULT 'NULL',
+  `modelid` int(10) unsigned NOT NULL DEFAULT '0',
+  `txdname` varchar(32) NOT NULL DEFAULT 'NULL',
+  `texturename` varchar(32) NOT NULL DEFAULT 'NULL',
+  `font` varchar(32) NOT NULL DEFAULT 'Arial',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=732 ;
+
+--
+-- Zrzut danych tabeli `mini_objects`
+--
+
+INSERT INTO `mini_objects` (`uid`, `gameuid`, `model`, `x`, `y`, `z`, `rx`, `ry`, `rz`, `gx`, `gy`, `gz`, `grx`, `gry`, `grz`, `owner`, `index_text`, `index_mat`, `color_text`, `color_mat`, `bgcolor`, `tsize`, `size`, `align`, `bold`, `text`, `modelid`, `txdname`, `texturename`, `font`) VALUES
+(11, 8, 12814, 2968.3, -1642.5, 0.5, 0, 0, 251.999, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(12, 8, 12814, 3015.2, -1657.5, 0.5, 0, 0, 251.999, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(10, 8, 12814, 2950.6, -1697.7, 0.5, 0, 0, 251.999, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(9, 8, 12814, 2959.1, -1671, 0.5, 0, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(13, 8, 12814, 3006, -1685.4, 0.5, 0, 0, 251.999, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(14, 8, 12814, 2996.7, -1712.7, 0.5, 0, 0, 251.999, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(15, 8, 8171, 2944.2, -1639.5, 18.8, 0, 90, 341.751, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(16, 8, 8171, 3013.7, -1645.6, 18.8, 0, 90, 251.744, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(17, 8, 8171, 3021, -1717, 18.5, 0, 90, 161.49, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(18, 8, 8171, 2988.6, -1721.1, 18.8, 0, 90, 75.4872, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(19, 8, 8171, 2960.8, -1644.3, 38.4, 0, 178.75, 341.746, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(20, 8, 8171, 2997.3, -1654.8, 38.9, 0, 178.748, 341.741, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(21, 8, 8171, 3022.5, -1662, 39.2, 0, 178.748, 341.741, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(22, 8, 3095, 2937.2, -1703.9, 3.2, 0, 358, 346, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(23, 8, 3095, 2946.5, -1705.9, 6.5, 0, 357.995, 345.998, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(24, 8, 3095, 2955.8, -1707.9, 10.3, 0, 357.995, 345.998, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(25, 8, 3095, 2965.5, -1709.6, 13.3, 0, 357.995, 345.998, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(26, 8, 3279, 2966.1, -1710.2, 13.4, 0, 0, 166, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(27, 8, 8425, 3019.2, -1708.6, 3.5, 0, 0, 342, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(28, 8, 2991, 3008.7, -1717.3, 0.9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(29, 8, 2991, 3002.3, -1710.5, 0.9, 0, 0, 324, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(30, 8, 2991, 3011.3, -1707, 0.9, 0, 0, 355.998, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(31, 8, 2991, 3003.2, -1702, 0.9, 0, 0, 339.995, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(32, 8, 2991, 2998.3, -1718.1, 0.9, 0, 0, 219.994, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(33, 8, 2991, 2993.5, -1709.2, 0.9, 0, 0, 53.9902, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(34, 8, 2991, 2997.2, -1703.5, 0.9, 0, 0, 127.987, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(35, 8, 2991, 2987.8, -1713.8, 0.9, 0, 0, 91.9852, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(36, 8, 2935, 3010.5, -1687.2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(37, 8, 2935, 3000.6, -1686.2, 2, 0, 0, 298, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(38, 8, 2935, 2989.6, -1698.3, 2, 0, 0, 5.99869, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(39, 8, 2935, 2979.9, -1710.4, 2, 0, 356, 319.999, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(40, 8, 2935, 2976, -1696, 2, 0, 355.995, 271.993, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(41, 8, 2935, 2980.11, -1686.31, 1.91022, 0, 355.99, 307.989, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(42, 8, 2935, 2991.1, -1681.3, 2, 0, 355.984, 333.985, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(43, 8, 18257, 3032.6, -1659.3, 0.6, 0, 358, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(44, 8, 18257, 3028.2, -1672, 0.6, 0, 357.995, 280, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(45, 8, 18257, 3016.1, -1648, 0.6, 0, 357.99, 125.998, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(46, 8, 18257, 3021, -1662.5, 0.6, 0, 355.99, 63.9967, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(47, 8, 18257, 3013.2, -1659.4, 0.6, 0, 355.984, 33.9954, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(48, 8, 18257, 3025.1, -1678.9, 0.6, 0, 355.984, 359.992, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(49, 8, 18257, 3012.7, -1671.4, 0.6, 0, 355.984, 67.989, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(50, 8, 12990, 2947, -1637.3, 3.9, 0, 358, 340.25, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(51, 8, 12990, 2938.9, -1661.5, 3.9, 0, 357.995, 340.247, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(52, 8, 12990, 2930.4, -1686, 3.9, 0, 357.995, 340.247, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(53, 8, 16135, 2995.4, -1662.8, 1, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(54, 8, 18451, 2979.8, -1642.6, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(55, 8, 18451, 2966.8, -1640.2, 1, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(56, 8, 18451, 2972, -1647.7, 1, 0, 0, 5.99927, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(57, 8, 18451, 2974.1, -1659.5, 1, 0, 0, 283.999, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(58, 8, 18451, 2962.5, -1652.1, 1, 0, 0, 321.997, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(59, 8, 18451, 2958.5, -1642.3, 1, 0, 0, 279.993, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(60, 8, 18451, 2955.1, -1656, 1, 0, 0, 319.992, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(61, 8, 18451, 2966, -1662.6, 1, 0, 0, 289.988, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(62, 8, 18451, 2953.2, -1664.6, 1, 0, 0, 211.984, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(63, 8, 18451, 2959.8, -1672.3, 1, 0, 0, 259.981, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(64, 8, 18451, 2946.4, -1671.2, 1, 0, 0, 287.98, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(65, 8, 18451, 2952.7, -1681.7, 1, 0, 2, 243.979, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(66, 8, 18451, 2943.8, -1681.2, 1, 0, 1.99951, 285.979, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(67, 8, 18451, 2953, -1693.6, 1, 0, 1.99951, 247.974, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(68, 8, 2935, 2942.3, -1691.8, 2, 0, 355.984, 275.985, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(69, 8, 2935, 2961.4, -1686.2, 2, 0, 355.984, 195.982, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(70, 8, 2935, 2971.6, -1673.1, 2, 0, 355.984, 121.98, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(71, 8, 18257, 2998.8, -1650.7, 0.6, 0, 355.984, 89.9889, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(72, 8, 18257, 2965.5, -1695.4, 0.6, 0, 355.984, 89.9835, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(73, 8, 18257, 2985.2, -1673.2, 0.6, 0, 355.984, 47.9835, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(74, 8, 18451, 2990.9, -1672.4, 1, 0, 0, 283.997, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(75, 8, 18451, 2971.1, -1683.8, 1, 0, 0, 235.997, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(76, 8, 18451, 3005.2, -1694.8, 1, 0, 0, 235.992, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(77, 8, 18451, 3004.3, -1670, 1, 0, 0, 235.992, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(78, 8, 18451, 3024.3, -1673.3, 1, 0, 0, 235.992, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(107, 10, 3374, -1064.08, -390.001, 99.4332, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(106, 1, 3374, -1064.08, -390.001, 99.4332, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(105, 6, 970, 2322.03, -1745.8, 13.0215, 0, 0, -33.4, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(103, 6, 970, 2321.53, -1739.47, 13.0369, 0, 0, -148.9, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(104, 6, 970, 2320.04, -1742.59, 13.0269, 0, 0, -82.5, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(108, 10, 3374, -1068.08, -390.001, 99.4332, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(109, 10, 3374, -1072.08, -390.001, 99.4332, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(110, 10, 3374, -1076.08, -390.001, 99.4332, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(111, 10, 3374, -1080.08, -390.001, 99.4332, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(118, 0, 970, 490.773, -6.41279, 1001.6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(113, 0, 970, 486.642, -6.41841, 1001.6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(114, 0, 2971, 487.257, -1.40761, 1000.3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(115, 0, 2971, 485.249, -1.37639, 999.876, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(116, 0, 2971, 489.268, -1.43828, 1000.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(119, 0, 970, 482.529, -6.41501, 1001.6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(120, 0, 970, 494.897, -6.41176, 1001.6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(681, 0, 970, 473.317, -21.7119, 1002.28, -43.5, -0.4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(680, 11, 19005, 1238.04, 2686.16, 171.48, 0, 0, 232.75, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(679, 11, 18801, 1242.75, 2718.75, 191.18, 0, 0, 329.84, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(678, 11, 18801, 1252.96, 2735.52, 191.18, 0, 0, 329.84, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(677, 11, 18801, 1262.87, 2752.24, 191.18, 0, 0, 329.84, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(676, 11, 18801, 1232.57, 2702.25, 191.18, 0, 0, 329.84, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(675, 11, 19005, 1021.19, 2778.93, 272.54, 0, 0, 124, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(674, 11, 18809, 1135.64, 2780.56, 274.32, 90, 0, 124, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(673, 11, 18826, 1097.38, 2771.85, 274.36, 90, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(672, 11, 18826, 1239.92, 2830.62, 262.94, 76, 0, 41.87, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(671, 11, 18809, 1176.47, 2807.97, 274.32, 90, 0, 124, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(670, 11, 18809, 1217.05, 2835.33, 274.32, 90, 0, 124, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(669, 11, 18809, 1052.68, 2800.36, 274.32, 90, 0, 124, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(668, 11, 18826, 1255.2, 2844.25, 255.25, 76, 0, 221.18, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(667, 11, 18789, 1174.76, 2788.11, 205.44, 0, 0, 51.92, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(666, 11, 18837, 1045.05, 2481.82, 186.63, 0, -40, 234, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(665, 11, 18842, 1102.89, 2535.04, 269.91, 0, 262, 52.75, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(664, 11, 18842, 1132.81, 2574.45, 276.87, 0, 262, 52.66, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(663, 11, 18842, 1162.79, 2613.58, 283.8, 0, 262, 52.58, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(662, 11, 18842, 1075.59, 2499.28, 247.01, 0, 224, 52.85, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(661, 11, 18824, 1180.29, 2655.73, 289.7, 276.3, 180, 6.8, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(660, 11, 18852, 1134.66, 2710.59, 288.67, 0, 86, 318.4, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(659, 11, 18825, 1089.4, 2749.84, 269.36, 0, 0, 322.32, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(658, 11, 18824, 1104.22, 2723.13, 251.12, 276.3, 180, 6.55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(657, 11, 18852, 1072.71, 2660.67, 245.21, 0, 86, 54.15, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(656, 11, 18825, 1037.37, 2612.37, 225.86, 0, 0, 52.09, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(655, 11, 18784, 1027.06, 2457.43, 183.35, 0, 326, 234.21, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(654, 11, 18784, 1033.04, 2465.59, 178.33, 0, 0, 234.11, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(653, 11, 18843, 1359.91, 2869.66, 232.35, 0, 284, 210.8, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(652, 11, 18853, 1289.81, 2815.81, 187.5, 0, 298, 225.89, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(651, 11, 19280, -1377.89, -253.8, 13.15, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(650, 11, 19280, -1318.13, 178.72, 13.15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(649, 11, 18789, 1087.77, 2676.8, 205.44, 0, 0, 51.92, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(648, 11, 18790, 1205.31, 2832.56, 170.68, 3.95, 327.91, 53.66, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(647, 11, 18843, -5.41, 10658.3, -514, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(646, 11, 10819, -1239.81, -221.37, -0.54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(645, 11, 18843, 1402.08, 2732.14, 223.39, -91, 0, 68.88, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(644, 11, 18843, -5.41, 10658.3, -514, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(643, 11, 18835, 1047.28, 2484.8, 208.73, 0, 0, 6.73, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(642, 11, 18826, 1232.07, 2802.54, 183.87, 40, 0, 245.09, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(641, 11, 18826, 1222.56, 2783.09, 208.3, 40, 0, 62.75, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(640, 11, 18809, 1334.8, 2761.55, 222.23, 91, 0, 241.52, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(639, 11, 18809, 1291.91, 2784.8, 221.36, 91, 0, 241.52, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(638, 11, 18818, 1255.72, 2805.02, 220.56, 91, 0, 239.61, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(637, 11, 18826, 1254.71, 2847.66, 224.25, 76, 0, 234.93, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(636, 11, 18826, 1240.1, 2829.75, 232.11, 76, 0, 45.57, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(635, 11, 18826, 1255.4, 2844.67, 239.76, 76, 0, 222.5, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(634, 11, 18826, 1239.78, 2830.43, 247.5, 76, 0, 42.16, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(633, 11, 18826, 1255.2, 2844.25, 270.46, 76, 0, 221.18, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(632, 11, 18826, 1091.63, 2809.4, 274.36, 90, 180, 42, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(631, 11, 18753, 1202.34, 2753.39, 167.92, 0, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(630, 11, 18777, 1198.5, 2670.99, 131.12, 0, 0, -99, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(629, 11, 18800, 1086.58, 2745.56, 82.76, 0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(628, 11, 18753, 1123.65, 2643.25, 24.17, 0, 0, 236.23, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(627, 11, 18800, 1133.46, 2718.82, 59.21, 0, 0, -30, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(626, 11, 18800, 1086.53, 2745.37, 35.67, 0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(625, 11, 18800, 1086.58, 2745.56, 129.89, 0, 0, 150, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(624, 11, 18800, 1135.69, 2717.39, 106.32, -0.04, 0, -30, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(623, 11, 18772, 3714.16, 2070.06, 160.26, -25, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(622, 11, 18772, 3480.89, 2123.91, 213.32, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(621, 11, 18772, 3001.49, 2234.21, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(620, 11, 18772, 2760.64, 2289.77, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(619, 11, 18772, 2518.43, 2345.51, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(618, 11, 18772, 2277.29, 2401.17, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(617, 11, 18772, 2035.68, 2457.18, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(616, 11, 18772, 1796.17, 2512.54, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(615, 11, 18772, 1555.54, 2568.08, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(614, 11, 18772, 1316.2, 2623.4, 157.12, 0, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(613, 11, 18772, 3240.36, 2178.91, 185.13, 13, 0, -103, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(612, 11, 19005, 785.21, 2301.28, 90.91, 0, 0, 142.4, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(611, 11, 18836, 834.63, 2370.48, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(610, 11, 18836, 860.42, 2410.53, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(609, 11, 18836, 1000.07, 2395.71, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(608, 11, 18841, 948.71, 2406.31, 92.94, 90, 0, -112, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(607, 11, 18841, 967.77, 2373.66, 92.94, 90, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(606, 11, 18841, 911.42, 2401.94, 92.94, 90, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(605, 11, 18841, 891.87, 2434.33, 92.94, 90, 0, -112, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(604, 11, 18836, 1025.55, 2435.25, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(603, 11, 18836, 1051.19, 2475.37, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(602, 11, 18836, 1076.44, 2514.99, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(601, 11, 18836, 1101.82, 2554.41, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(600, 11, 18836, 1128.92, 2596.38, 92.94, 0, 0, 327.45, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(599, 11, 18836, 807.41, 2329.53, 92.94, 0, 0, 145, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(598, 11, 18841, 1147.88, 2626.45, 77.02, 0, 0, 238.39, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(597, 11, 18836, 1129.66, 2598.24, 61.2, 0, 0, 326.97, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(596, 11, 18777, 1198.5, 2670.99, 104.98, 0, 0, -99, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(595, 11, 18777, 1198.5, 2670.99, 78.96, 0, 0, -99, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(594, 11, 18777, 1198.78, 2670.87, 53.02, 0, 0, -99, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(593, 11, 18777, 1199.93, 2670.42, 27.09, 0, 0, -99, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(592, 11, 8209, 1076.12, 2543.65, 8.94, 0, -21, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(591, 11, 18841, 1110.69, 2568.51, 45.45, 0, 0, 56.34, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(590, 11, 18827, 301.57, 3163.59, 19.83, -17, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(589, 11, 18827, 379.61, 3108.94, 48.94, -17, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(588, 11, 18827, 456.9, 3054.85, 77.72, -17, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(587, 11, 18827, 534.85, 3000.17, 106.83, -17, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(586, 11, 18827, 615.74, 2943.82, 121.64, 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(585, 11, 18827, 696.32, 2887.33, 121.64, 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(584, 11, 18827, 775.42, 2831.88, 121.64, 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(583, 11, 18827, 856.27, 2775.05, 106.04, 18, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(582, 11, 18827, 933.84, 2720.7, 75.31, 18, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(581, 11, 18827, 1011.02, 2666.58, 44.66, 18, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(580, 11, 8171, 1050.8, 2539.34, -0.03, 21, 180, 326, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(579, 11, 8171, 1050.8, 2539.34, -0.03, 21, 0, 326.25, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(578, 11, 19005, 937.13, 2604.25, 122.82, 0, 0, 139.55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(577, 11, 18809, 988.86, 2665.29, 124.89, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(576, 11, 18809, 1019.74, 2702.06, 124.89, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(575, 11, 18809, 1020.67, 2703.06, 93.29, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(574, 11, 18826, 1041.9, 2728.69, 109.22, 0, 0, 231, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(573, 11, 18809, 1041.03, 2629.14, 93.29, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(572, 11, 18826, 1049.58, 2665.18, 93.33, 90, 0, 235, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(571, 11, 18826, 1043.41, 2608.96, 61.12, 90, 0, 235, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(570, 11, 18809, 1009.73, 2592.09, 93.29, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(569, 11, 18809, 977.76, 2554, 93.29, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(568, 11, 18809, 945.5, 2515.9, 93.29, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(567, 11, 18809, 976.78, 2553.14, 61.21, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(566, 11, 18826, 922.77, 2489.11, 77.32, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(565, 11, 18809, 959.35, 2630.42, 124.89, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(564, 11, 18809, 956.63, 2626.9, 61.21, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(563, 11, 18826, 991.57, 2645.21, 61.12, 90, 0, 235, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(562, 11, 18826, 947.79, 2590.86, 61.12, 90, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(561, 11, 18826, 1005.86, 2610.43, 61.12, 90, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(560, 11, 18809, 1092.72, 2591.76, 61.21, 90, 0, 139.13, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(559, 11, 18826, 1011.88, 2666.95, 93.33, 90, 167, 247.19, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(558, 11, 18826, 1057.52, 2573.84, 61.12, 90, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(557, 11, 18826, 985.84, 2589.64, 61.12, 90, 0, 235, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(556, 11, 18809, 1124.68, 2628.67, 61.21, 90, 0, 139.13, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(555, 11, 18809, 1156.04, 2664.94, 61.21, 90, 0, 139.13, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(554, 11, 18809, 944.86, 2515.16, 61.21, 90, 0, 140, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(553, 11, 18826, 1178.4, 2691.98, 45.33, 0, 0, 233, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(552, 11, 8209, 1043.05, 2565.56, 8.94, 0, -21, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(551, 11, 18777, 1133.42, 2768.6, 144.93, 0, 0, 236.8, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(550, 11, 19005, 766.19, 2901.88, 77.56, 0, 0, -302, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(549, 11, 19005, 760.81, 2893.26, 77.56, 0, 0, -302, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(548, 11, 19005, 754.97, 2884.37, 77.56, 0, 0, -302, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(547, 11, 19005, 771.13, 2910.23, 77.56, 0, 0, -302, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(546, 11, 19073, 790.75, 2878.91, 77.08, 0, 0, -125, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(545, 11, 19070, 872.9, 2822.94, 62.05, 0, 0, -304, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(544, 11, 19070, 919.26, 2791.85, 51.45, 0, 0, -304, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(543, 11, 19070, 965.16, 2761.18, 40.84, 0, 0, -304, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(542, 11, 19070, 1009.27, 2731.54, 30.33, 0, 0, -304, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(541, 11, 19070, 838.13, 2846.42, 71.65, 0, 0, -304, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(540, 11, 19073, 1057.09, 2698.81, 24.66, 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(539, 11, 3461, 1082.52, 2595.92, 22.96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(538, 11, 3461, 1082.33, 2596.01, 23.08, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(537, 11, 3461, 1082.14, 2596.09, 22.95, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(536, 11, 3461, 1081.95, 2596.16, 23.03, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(535, 11, 3461, 1081.75, 2596.18, 23.04, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(534, 11, 3461, 1082.7, 2595.84, 23.07, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(682, 32, 3923, 830.9, -3539.5, 113.4, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(683, 32, 3911, 535.6, -3725.4, 71.432, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(684, 32, 3907, 1029.5, -3793.5, 138.4, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(685, 32, 3906, 795, -4030.8, 143.7, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(686, 32, 3905, 584.6, -3836, 162.242, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(687, 32, 5112, 809.6, -3301.8, -3.2, 0, 0, 272.5, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(688, 32, 5112, 804.8, -3192.2, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(689, 32, 5112, 798.8, -3053.7, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(690, 32, 5112, 792.5, -2908.6, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(691, 32, 5112, 786, -2761.2, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(692, 32, 5112, 795.2, -2971.4, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(693, 32, 5112, 788.3, -2812.1, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(694, 32, 5112, 783.6, -2706.2, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(695, 32, 5112, 780.9, -2643.7, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(696, 32, 5112, 776, -2535.3, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(697, 32, 5112, 776, -2535.3, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(698, 32, 5112, 770.9, -2420, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(699, 32, 5112, 765.4, -2296, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(700, 32, 5112, 835.9, -2139.3, -9.7, 0, 14.5, 268.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(701, 32, 1337, 771.359, -1913.75, 8.05124, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(702, 32, 7938, 775, -2203.1, -1.5, 0, 0, 112, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(703, 32, 7938, 821.5, -2140.9, -1.5, 0, 0, 285.995, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(704, 32, 5112, 839.9, -1989, 8.2, 0, 0, 268.495, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(705, 32, 5112, 833.5, -2156.8, -9.2, 0, 10, 266.495, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(706, 32, 5112, 837.8, -1867.6, 8.7, 0, 0, 272.489, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(707, 33, 3923, 830.9, -3539.5, 113.4, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(708, 33, 3911, 535.6, -3725.4, 71.432, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(709, 33, 3907, 1029.5, -3793.5, 138.4, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(710, 33, 3906, 795, -4030.8, 143.7, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(711, 33, 3905, 584.6, -3836, 162.242, 0, 0, 222, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(712, 33, 5112, 809.6, -3301.8, -3.2, 0, 0, 272.5, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(713, 33, 5112, 804.8, -3192.2, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(714, 33, 5112, 798.8, -3053.7, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(715, 33, 5112, 792.5, -2908.6, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(716, 33, 5112, 786, -2761.2, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(717, 33, 5112, 795.2, -2971.4, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(718, 33, 5112, 788.3, -2812.1, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(719, 33, 5112, 783.6, -2706.2, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(720, 33, 5112, 780.9, -2643.7, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(721, 33, 5112, 776, -2535.3, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(722, 33, 5112, 776, -2535.3, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(723, 33, 5112, 770.9, -2420, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(724, 33, 5112, 765.4, -2296, -3.2, 0, 0, 272.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(725, 33, 5112, 835.9, -2139.3, -9.7, 0, 14.5, 268.499, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(726, 33, 1337, 771.359, -1913.75, 8.05124, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(727, 33, 7938, 775, -2203.1, -1.5, 0, 0, 112, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(728, 33, 7938, 821.5, -2140.9, -1.5, 0, 0, 285.995, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(729, 33, 5112, 839.9, -1989, 8.2, 0, 0, 268.495, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(730, 33, 5112, 833.5, -2156.8, -9.2, 0, 10, 266.495, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial'),
+(731, 33, 5112, 837.8, -1867.6, 8.7, 0, 0, 272.489, 0, 0, 0, 0, 0, 0, 0, 0, 1, '0xAAFFFFFF', '0', '0', 0, 28, 0, 0, 'NULL', 0, 'NULL', 'NULL', 'Arial');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_pickups`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_pickups` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gameuid` int(10) unsigned NOT NULL DEFAULT '0',
+  `model` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` int(10) unsigned NOT NULL DEFAULT '2',
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `func` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `mini_pickups`
+--
+
+INSERT INTO `mini_pickups` (`uid`, `gameuid`, `model`, `type`, `x`, `y`, `z`, `func`) VALUES
+(1, 8, 358, 2, 2966.03, -1710.38, 30.4781, 1),
+(2, 6, 1239, 2, 2378.94, -1656.3, 13.0396, 2),
+(3, 6, 1239, 2, 2342.57, -1719.42, 13.014, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_players`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_players` (
+  `guid` int(11) NOT NULL,
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'NULL',
+  `lvl` int(10) unsigned NOT NULL DEFAULT '0',
+  `exp` int(10) unsigned NOT NULL DEFAULT '0',
+  `skin` int(11) unsigned NOT NULL DEFAULT '0',
+  `premium` int(11) unsigned NOT NULL DEFAULT '0',
+  `cash` int(11) NOT NULL DEFAULT '100',
+  `block` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `kills` int(11) unsigned NOT NULL DEFAULT '0',
+  `death` int(11) unsigned NOT NULL DEFAULT '0',
+  `option` int(11) unsigned NOT NULL DEFAULT '0',
+  `premium_option` int(11) unsigned NOT NULL DEFAULT '0',
+  `adminlvl` int(11) unsigned NOT NULL DEFAULT '0',
+  `afk` int(11) unsigned NOT NULL DEFAULT '0',
+  `veh_dist` float unsigned NOT NULL DEFAULT '0',
+  `visits` int(11) unsigned NOT NULL DEFAULT '0',
+  `timehere` int(11) unsigned NOT NULL DEFAULT '0',
+  `achiv` int(11) unsigned NOT NULL DEFAULT '0',
+  `klan` int(10) unsigned NOT NULL DEFAULT '0',
+  `klanrank` int(10) unsigned NOT NULL DEFAULT '0',
+  `lang` int(10) unsigned NOT NULL DEFAULT '0',
+  `lastlogged` int(11) unsigned NOT NULL DEFAULT '0',
+  `joined` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_race`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_race` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gameuid` int(10) unsigned NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+--
+-- Zrzut danych tabeli `mini_race`
+--
+
+INSERT INTO `mini_race` (`uid`, `gameuid`, `x`, `y`, `z`) VALUES
+(1, 6, 2403.2, -1658.8, 13.1),
+(2, 6, 2348.7, -1663.5, 13.4),
+(3, 6, 2336.7, -1725.9, 13.4),
+(4, 6, 2317.1, -1742.6, 13.4),
+(5, 6, 2334.9, -1754.4, 13.4),
+(6, 6, 2331.7, -1775, 13.4),
+(7, 6, 2331.3, -1803.4, 13.4),
+(8, 6, 2317.3, -1821.6, 13.4),
+(9, 6, 2298.9, -1815.7, 13.4),
+(10, 6, 2299.1, -1764.1, 13.4),
+(11, 6, 2308.3, -1751.6, 13.4),
+(12, 6, 2306.1, -1736.1, 13.4),
+(13, 6, 2295.6, -1725.7, 13.4),
+(14, 6, 2296.4, -1693.7, 13.4),
+(15, 6, 2228.4, -1690.2, 13.4),
+(16, 6, 2231.7, -1659.7, 13.4),
+(17, 6, 2264.5, -1659, 13.4),
+(18, 6, 2326.1, -1659.2, 13.4),
+(19, 6, 2386.5, -1658.9, 13.4),
+(20, 6, 2460.2, -1658.9, 13.4),
+(21, 6, 2470.3, -1672.7, 13.4);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_ranks`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_ranks` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `klanuid` int(10) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(32) NOT NULL DEFAULT '',
+  `lvl` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`),
+  KEY `klanuid` (`klanuid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Zrzut danych tabeli `mini_ranks`
+--
+
+INSERT INTO `mini_ranks` (`uid`, `klanuid`, `name`, `lvl`) VALUES
+(1, 1, 'Lider', 255),
+(9, 5, 'Generał', 255),
+(12, 5, 'Pułkownik', 8),
+(13, 5, 'Podpułkownik', 7),
+(14, 5, 'Major', 6),
+(15, 5, 'Kapitan', 5),
+(16, 5, 'Porucznik', 4),
+(17, 5, 'Podporucznik', 3),
+(18, 5, 'Starszy Szeregowy', 2),
+(19, 5, 'Szeregowy', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_rate`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_rate` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `player` int(10) unsigned NOT NULL,
+  `game` int(10) unsigned NOT NULL,
+  `rate` int(10) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_setting`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_setting` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `a` float NOT NULL,
+  `int` int(10) unsigned NOT NULL DEFAULT '0',
+  `url` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Zrzut danych tabeli `mini_setting`
+--
+
+INSERT INTO `mini_setting` (`uid`, `x`, `y`, `z`, `a`, `int`, `url`) VALUES
+(1, 493.391, -22.7228, 1000.68, 0, 17, 'http://s5.radioparty.pl:8000');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_shop`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_shop` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cat` int(10) unsigned NOT NULL DEFAULT '0',
+  `time` int(10) unsigned NOT NULL DEFAULT '0',
+  `t_price` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `price` int(10) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(32) NOT NULL DEFAULT '',
+  `v1` int(10) NOT NULL DEFAULT '0',
+  `v2` int(10) NOT NULL DEFAULT '0',
+  `v3` float NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `mini_shop`
+--
+
+INSERT INTO `mini_shop` (`uid`, `cat`, `time`, `t_price`, `price`, `name`, `v1`, `v2`, `v3`) VALUES
+(1, 1, 604800, 1, 1000, 'AK-47', 5, 30, 0),
+(2, 1, 604800, 1, 1000, 'M4', 5, 31, 0),
+(3, 1, 604800, 1, 1000, 'Combat Shotgun', 3, 27, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_shop_cat`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_shop_cat` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `mini_shop_cat`
+--
+
+INSERT INTO `mini_shop_cat` (`uid`, `name`) VALUES
+(1, 'Bronie'),
+(2, 'Skiny'),
+(3, 'Dodatki');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_skin`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_skin` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `skin` int(10) unsigned NOT NULL DEFAULT '0',
+  `resp` int(10) unsigned NOT NULL DEFAULT '0',
+  `cash` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `mini_skin`
+--
+
+INSERT INTO `mini_skin` (`uid`, `skin`, `resp`, `cash`) VALUES
+(1, 123, 10, 30),
+(2, 124, 10, 0),
+(3, 125, 0, 30);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_spawns`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_spawns` (
+  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `gameuid` int(11) unsigned NOT NULL DEFAULT '0',
+  `team` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `x` float NOT NULL DEFAULT '0',
+  `y` float NOT NULL DEFAULT '0',
+  `z` float NOT NULL DEFAULT '0',
+  `a` float NOT NULL DEFAULT '0',
+  `int` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
+
+--
+-- Zrzut danych tabeli `mini_spawns`
+--
+
+INSERT INTO `mini_spawns` (`uid`, `gameuid`, `team`, `x`, `y`, `z`, `a`, `int`) VALUES
+(1, 1, 2, -1013.37, -709.029, 32.3516, 10.7, 0),
+(3, 1, 1, -985.784, -705.47, 32.3516, 16.6, 0),
+(4, 1, 2, -1013.37, -709.029, 32.0078, 10.7, 0),
+(6, 3, 0, 160.166, -177.329, 1.5781, 64.2107, 0),
+(7, 3, 0, 303.979, -254.277, 1.5781, 340.287, 0),
+(8, 3, 0, 376.427, -104.551, 1.2802, 19.4541, 0),
+(9, 3, 0, 360.143, -109.512, 1.2283, 4.4139, 0),
+(10, 4, 0, 351.525, -109.462, 1.2729, 11.934, 0),
+(11, 3, 0, 309.272, -31.4294, 1.5302, 245.346, 0),
+(12, 3, 0, 255.247, -53.2772, 1.5703, 165.155, 0),
+(13, 3, 0, 183.927, -108.242, 2.0234, 53.2944, 0),
+(14, 3, 0, 132.577, -51.4233, 1.5781, 188.746, 0),
+(15, 2, 1, -1370.85, 490.974, 11.1953, 283.73, 0),
+(16, 2, 2, -1346.01, 492.577, 11.2027, 92.9317, 0),
+(17, 2, 2, -1346.45, 492.453, 18.2344, 13.9945, 0),
+(18, 5, 1, 2530.2, -1696.9, 13.7, 0, 0),
+(19, 5, 1, 2536, -1668.6, 15.2, 0, 0),
+(20, 5, 1, 2535.8, -1654, 15.1, 0, 0),
+(21, 5, 1, 2528.1, -1641.4, 13.9, 0, 0),
+(22, 6, 0, 2455.4, -1661, 13.1, 90, 0),
+(23, 6, 0, 2455.1, -1656.3, 13.1, 90, 0),
+(24, 6, 0, 2447.1, -1656.4, 13.1, 90, 0),
+(25, 6, 0, 2447.2, -1661.1, 13.1, 90, 0),
+(26, 6, 0, 2439.4, -1661.2, 13.1, 90, 0),
+(27, 6, 0, 2439.3, -1656.4, 13.1, 90, 0),
+(28, 6, 0, 2431.8, -1656.5, 13.1, 90, 0),
+(29, 6, 0, 2431.9, -1661.3, 13.1, 90, 0),
+(30, 6, 0, 2424.6, -1661.4, 13.1, 90, 0),
+(31, 6, 0, 2424.5, -1656.4, 13.1, 90, 0),
+(32, 6, 0, 2461.8, -1656.2, 13.1, 90, 0),
+(33, 6, 0, 2461.9, -1660.9, 13.1, 90, 0),
+(34, 7, 2, 2215.1, -1150.21, 1025.8, 265.906, 15),
+(35, 7, 1, 2193.58, -1138.63, 1029.8, 180, 15),
+(36, 8, 0, 2985.31, -1704.24, 1.50781, 0, 0),
+(37, 10, 0, -1080.08, -390.001, 102.433, 0, 0),
+(38, 11, 0, 1038.88, 2555.3, 10.5472, 320, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_text`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_text` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gameuid` int(10) unsigned NOT NULL,
+  `text` varchar(256) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `a` float unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Zrzut danych tabeli `mini_text`
+--
+
+INSERT INTO `mini_text` (`uid`, `gameuid`, `text`, `x`, `y`, `z`, `a`) VALUES
+(1, 0, 'TOP_ALL_TIME;', 487.339, -1.6397, 1003.38, 180),
+(2, 0, 'TOP_ALL_DEATH;', 489.339, -1.6397, 1003.38, 180),
+(3, 0, 'TOP_ALL_KILL;', 485.339, -1.6397, 1003.38, 180),
+(4, 8, 'TOP_GAME_DEATH;', 3015.87, -1707.83, 8.982, 75),
+(5, 0, '{42B542}Dane aktualizowane co 10 minut!', 487.339, -1.6397, 1002.38, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_top`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_top` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gameuid` int(10) unsigned NOT NULL,
+  `player` int(10) unsigned NOT NULL,
+  `type` int(10) unsigned NOT NULL DEFAULT '0',
+  `value` float NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_top_players`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_top_players` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `value` int(10) unsigned NOT NULL DEFAULT '0',
+  `time` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `date` (`date`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `mini_vehicles`
+--
+
+CREATE TABLE IF NOT EXISTS `mini_vehicles` (
+  `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gameuid` int(10) unsigned NOT NULL DEFAULT '0',
+  `team` int(10) unsigned NOT NULL DEFAULT '0',
+  `model` int(10) unsigned NOT NULL DEFAULT '0',
+  `x` float NOT NULL DEFAULT '0',
+  `y` float NOT NULL DEFAULT '0',
+  `z` float NOT NULL DEFAULT '0',
+  `a` float NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Zrzut danych tabeli `mini_vehicles`
+--
+
+INSERT INTO `mini_vehicles` (`uid`, `gameuid`, `team`, `model`, `x`, `y`, `z`, `a`) VALUES
+(1, 1, 1, 522, -1030.47, -676.515, 31.7349, 270),
+(2, 1, 1, 560, -1000.67, -671.337, 31.7349, 90),
+(3, 1, 1, 562, -983.036, -684.294, 31.7397, 90),
+(4, 2, 1, 476, -1306.09, 492.93, 18.2344, 353),
+(5, 5, 1, 567, 2492.5, -1684.2, 13.3, 90),
+(6, 5, 1, 492, 2484.5, -1653.9, 13.2, 90);
+
+--
+-- Struktura tabeli dla tabeli `ipb_members`
+--
+
+CREATE TABLE IF NOT EXISTS `ipb_members` (
+  `member_id` mediumint(8) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `member_group_id` smallint(3) NOT NULL DEFAULT '0',
+  `email` varchar(150) NOT NULL DEFAULT '',
+  `joined` int(10) NOT NULL DEFAULT '0',
+  `ip_address` varchar(46) NOT NULL DEFAULT '',
+  `posts` mediumint(7) DEFAULT '0',
+  `title` varchar(64) DEFAULT NULL,
+  `allow_admin_mails` tinyint(1) DEFAULT NULL,
+  `allow_handel` tinyint(1) DEFAULT NULL,
+  `time_offset` varchar(10) DEFAULT NULL,
+  `skin` smallint(5) DEFAULT NULL,
+  `warn_level` int(10) DEFAULT NULL,
+  `warn_lastwarn` int(10) NOT NULL DEFAULT '0',
+  `language` mediumint(4) DEFAULT NULL,
+  `last_post` int(10) DEFAULT NULL,
+  `restrict_post` varchar(100) NOT NULL DEFAULT '0',
+  `view_sigs` tinyint(1) DEFAULT '1',
+  `view_img` tinyint(1) DEFAULT '1',
+  `bday_day` int(2) DEFAULT NULL,
+  `bday_month` int(2) DEFAULT NULL,
+  `bday_year` int(4) DEFAULT NULL,
+  `msg_count_new` int(2) NOT NULL DEFAULT '0',
+  `msg_count_total` int(3) NOT NULL DEFAULT '0',
+  `msg_count_reset` int(1) NOT NULL DEFAULT '0',
+  `msg_show_notification` int(1) NOT NULL DEFAULT '0',
+  `misc` varchar(128) DEFAULT NULL,
+  `last_visit` int(10) DEFAULT '0',
+  `last_activity` int(10) DEFAULT '0',
+  `dst_in_use` tinyint(1) DEFAULT '0',
+  `coppa_user` tinyint(1) DEFAULT '0',
+  `mod_posts` varchar(100) NOT NULL DEFAULT '0',
+  `auto_track` varchar(50) DEFAULT '0',
+  `temp_ban` varchar(100) DEFAULT '0',
+  `login_anonymous` char(3) NOT NULL DEFAULT '0&0',
+  `ignored_users` text,
+  `mgroup_others` varchar(255) NOT NULL DEFAULT '',
+  `org_perm_id` varchar(255) NOT NULL DEFAULT '',
+  `member_login_key` varchar(32) NOT NULL DEFAULT '',
+  `member_login_key_expire` int(10) NOT NULL DEFAULT '0',
+  `has_blog` text,
+  `blogs_recache` tinyint(1) DEFAULT NULL,
+  `has_gallery` tinyint(1) NOT NULL DEFAULT '0',
+  `members_auto_dst` tinyint(1) NOT NULL DEFAULT '1',
+  `members_display_name` varchar(255) NOT NULL DEFAULT '',
+  `members_seo_name` varchar(255) NOT NULL DEFAULT '',
+  `members_created_remote` tinyint(1) NOT NULL DEFAULT '0',
+  `members_cache` mediumtext,
+  `members_disable_pm` int(1) NOT NULL DEFAULT '0',
+  `members_l_display_name` varchar(255) NOT NULL DEFAULT '',
+  `members_l_username` varchar(255) NOT NULL DEFAULT '',
+  `failed_logins` text,
+  `failed_login_count` smallint(3) NOT NULL DEFAULT '0',
+  `members_profile_views` int(10) unsigned NOT NULL DEFAULT '0',
+  `members_pass_hash` varchar(32) NOT NULL DEFAULT '',
+  `members_pass_salt` varchar(5) NOT NULL DEFAULT '',
+  `member_banned` tinyint(1) NOT NULL DEFAULT '0',
+  `member_uploader` varchar(32) NOT NULL DEFAULT 'default',
+  `members_bitoptions` int(10) unsigned NOT NULL DEFAULT '0',
+  `fb_uid` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `fb_emailhash` varchar(60) NOT NULL DEFAULT '',
+  `fb_lastsync` int(10) NOT NULL DEFAULT '0',
+  `members_day_posts` varchar(32) NOT NULL DEFAULT '0,0',
+  `live_id` varchar(32) DEFAULT NULL,
+  `twitter_id` varchar(255) NOT NULL DEFAULT '',
+  `twitter_token` varchar(255) NOT NULL DEFAULT '',
+  `twitter_secret` varchar(255) NOT NULL DEFAULT '',
+  `notification_cnt` mediumint(9) NOT NULL DEFAULT '0',
+  `tc_lastsync` int(10) NOT NULL DEFAULT '0',
+  `fb_session` varchar(200) NOT NULL DEFAULT '',
+  `fb_token` text,
+  `ips_mobile_token` varchar(64) DEFAULT NULL,
+  `unacknowledged_warnings` tinyint(1) DEFAULT NULL,
+  `ipsconnect_id` int(10) NOT NULL DEFAULT '0',
+  `ipsconnect_revalidate_url` text,
+  `premium` int(10) unsigned NOT NULL DEFAULT '0',
+  `score` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`member_id`),
+  KEY `members_l_display_name` (`members_l_display_name`),
+  KEY `members_l_username` (`members_l_username`),
+  KEY `mgroup` (`member_group_id`,`member_id`),
+  KEY `member_groups` (`member_group_id`,`mgroup_others`),
+  KEY `bday_day` (`bday_day`),
+  KEY `bday_month` (`bday_month`),
+  KEY `member_banned` (`member_banned`),
+  KEY `members_bitoptions` (`members_bitoptions`),
+  KEY `ip_address` (`ip_address`),
+  KEY `failed_login_count` (`failed_login_count`),
+  KEY `joined` (`joined`),
+  KEY `fb_uid` (`fb_uid`),
+  KEY `twitter_id` (`twitter_id`),
+  KEY `email` (`email`),
+  KEY `blogs_recache` (`blogs_recache`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

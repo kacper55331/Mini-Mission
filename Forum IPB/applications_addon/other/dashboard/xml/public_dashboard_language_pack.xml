@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<languageexport>
+  <languagegroup>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>best_deaths</word_key>
+      <word_default>Najwięcej śmierci</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>best_kills</word_key>
+      <word_default>Najwięcej zabójstw</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>best_timehere</word_key>
+      <word_default>Najdłużej online</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>best_timehere2</word_key>
+      <word_default>Najlepszy czas</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>be_partner</word_key>
+      <word_default>Zostań partnerem</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>char_name</word_key>
+      <word_default>Nazwa postaci</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>comment</word_key>
+      <word_default>Komentarze</word_default>
+    </lang>
+    <lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>member_name</word_key>
+      <word_default>Nazwa u࠹tkownika</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>none</word_key>
+      <word_default>Brak</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>no_member</word_key>
+      <word_default>Musisz być zalogowany</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>no_online</word_key>
+      <word_default>Brak graczy online</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>partners</word_key>
+      <word_default>Partnerzy</word_default>
+    </lang>
+	<lang>
+      <word_app>dashboard</word_app>
+      <word_pack>public_dashboard</word_pack>
+      <word_key>time</word_key>
+      <word_default>Czas gry</word_default>
+    </lang>
+  </languagegroup>
+</languageexport>
