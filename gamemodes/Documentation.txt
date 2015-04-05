@@ -1,0 +1,88 @@
+GUI
+	     ID:   Name:
+		0  -	None				-> ----------------------
+		1  -	Animacje			-> MINI_anims.pwn		|
+		2  -	Logowanie			-> MINI.pwn			|
+		3  -	Wybór postaci			-> MINI.pwn
+		4  -	Wybór teamu
+end GUI
+
+
+Sklep
+	Type:
+		Broñ:
+			v1: slot
+			v2: model
+
+		Skin:
+			v1: model
+
+		Dodatki:
+			v1: objectmodel
+			v2: slot
+			v3: bone		
+end Sklep
+
+/*
+0.   Noworodek.
+1.   Niemowle.
+2.   Dzieciak.
+3.   Maciek z Klanu.
+4.   Szczeniak.
+5.   Ba³wan.
+6.   M³otek.
+7.   G³uchy.
+8.   Polak.
+9.   ¯ó³todziób.
+10.  Ciamajda.
+11.  Beginner.
+12.  Killer.
+13.  Amstaff.
+14.  Oprych.
+15.  Pitbull.
+16.  Indiana Jones.
+17.  Kozak.
+18.  Diler.
+19.  Biskup.
+20.  Degustator.
+21.  WiedŸma.
+22.  Figlarz.
+23.  Z³odziej.
+24.  Klubowicz.
+25.  Figo Fago.
+26.  Bokser.
+27.  Anio³ek Charliego.
+28.  No lifer.
+29.  Terminator.
+30.  Beton  :)
+31.  Jamnik.
+32.  Poszukiwacz.
+33.  Matrix.
+34.  Doœwiadczony Zabójca.
+35.  Grajek.
+36.  GrajkoMan
+37.  TurboGrajkoMan.
+38.  Assasin.
+39.  Bull dog.
+40.  Król Julian.
+41.  Joker.
+42.  Hacker.
+43.  Niewidomy.
+44.  Lagger.
+45.  Badboy.
+46.  Myœliwy.
+47.  Egzorcysta.
+48.  Pedobear.
+49.  W³adca.
+50.  Pan ¿ycia i œmierci.
+51.  Szatan.
+52.  Istny diabe³.
+53.  Anio³.
+54.  Upad³y Anio³.
+55.  Cziter.
+56.  Tygrys.
+57.  Zbawiciel.
+58.  Demon.
+59.  Chuck Norris.
+60.  Bóg.
+*/

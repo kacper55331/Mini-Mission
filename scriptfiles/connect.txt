@@ -1,0 +1,5 @@
+id = 1
+host1 = localhost
+user1 = root
+db1 = minimission
+pass1 = pass_here
